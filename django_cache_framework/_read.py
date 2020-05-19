@@ -8,7 +8,7 @@ from django.core.cache import DEFAULT_CACHE_ALIAS
 from django_cache_framework._base import BaseCacheDecorator
 
 
-class GetCache(BaseCacheDecorator):
+class ReadCache(BaseCacheDecorator):
 
     def __init__(self, *, key: str, duration: timedelta, alias: str = DEFAULT_CACHE_ALIAS):
         super().__init__(key, alias)
