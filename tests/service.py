@@ -1,3 +1,4 @@
+from typing import Optional
 from uuid import UUID
 
 from more_itertools import first
@@ -15,11 +16,12 @@ class StudentService:
         self.students.append(student)
         return student
 
-    def read(self, id: UUID) -> dict:
+    def read(self, id: UUID) -> Optional[dict]:
         return first(
             filter(
                 lambda s: s['id'] == id, self.students
-            )
+            ),
+            None
         )
 
     def update(self, id: UUID, name: str) -> dict:
