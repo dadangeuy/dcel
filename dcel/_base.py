@@ -34,7 +34,7 @@ class BaseCacheDecorator(ABC):
         value_per_expr = {}
 
         for variable_expr in findall(r'(?<={).*?(?=\})', expression):
-            attributes = split(r'\W+', variable_expr)
+            attributes = split(r'\.+', variable_expr)
             argument_key = attributes[0]
             argument_attributes = attributes[1:]
 
