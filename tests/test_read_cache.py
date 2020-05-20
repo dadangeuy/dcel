@@ -16,7 +16,7 @@ class TestGetCache(TestCase):
 
     def setUp(self) -> None:
         self.patch_read = patch.object(student_service, 'read', wraps=student_service.read).start()
-        self.cached_read = ReadCache(key='{args.0}', duration=timedelta(minutes=5))(self.patch_read)
+        self.cached_read = ReadCache(key='{args[0]}', duration=timedelta(minutes=5))(self.patch_read)
 
     def test_can_read_cached_result(self):
         init_student_1 = {'id': uuid4(), 'name': 'student-1'}

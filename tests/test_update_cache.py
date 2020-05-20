@@ -16,10 +16,10 @@ class TestGetCache(TestCase):
 
     def setUp(self) -> None:
         self.patch_read = patch.object(student_service, 'read', wraps=student_service.read).start()
-        self.cached_read = ReadCache(key='{args.0}', duration=timedelta(minutes=5))(self.patch_read)
+        self.cached_read = ReadCache(key='{args[0]}', duration=timedelta(minutes=5))(self.patch_read)
 
         self.patch_update = patch.object(student_service, 'update', wraps=student_service.update).start()
-        self.cached_update = UpdateCache(key='{args.0}', duration=timedelta(minutes=5))(self.patch_update)
+        self.cached_update = UpdateCache(key='{args[0]}', duration=timedelta(minutes=5))(self.patch_update)
 
     def test_can_update_cached_result(self):
         init_student = {'id': uuid4(), 'name': 'student-1'}

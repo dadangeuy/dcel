@@ -36,7 +36,7 @@ class TestCreateKey(TestCase):
             cached_key = key
 
         cached_method = ReadCache(
-            key='join_name({a.name},{b.name})',
+            key='join_name({a["name"]},{b["name"]})',
             duration=timedelta(minutes=5),
             on_miss=set_cached_key,
         )(self.join_name)
@@ -55,7 +55,7 @@ class TestCreateKey(TestCase):
             cached_key = key
 
         cached_method = ReadCache(
-            key='is_lowest({values.0},{values.-1})',
+            key='is_lowest({values[0]},{values[-1]})',
             duration=timedelta(minutes=5),
             on_miss=set_cached_key,
         )(self.is_lowest)
