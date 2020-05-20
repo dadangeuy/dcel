@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='django-cache-expression-language',
-    version='0.0.1',
+    version='0.0.2',
     author='Irsyad Rizaldi',
     author_email='irsyad.rizaldi97@gmail.com',
     description='Expression Language Decorator for Django Cache',
