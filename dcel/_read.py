@@ -5,10 +5,10 @@ from typing import Callable
 
 from django.core.cache import DEFAULT_CACHE_ALIAS
 
-from django_cache_framework._base import BaseCacheDecorator
+from dcel._base import BaseCacheDecorator
 
 
-class UpdateCache(BaseCacheDecorator):
+class ReadCache(BaseCacheDecorator):
 
     def __init__(self, *, key: str, duration: timedelta, alias: str = DEFAULT_CACHE_ALIAS):
         super().__init__(key, alias)
@@ -19,12 +19,11 @@ class UpdateCache(BaseCacheDecorator):
 
         @wraps(function)
         def wrapper(*args, **kwargs) -> object:
-            value = function(*args, **kwargs)
             key = self._get_key(signature, *args, **kwargs)
-            self.cache.set(
+            value = self.cache.get_or_set(
                 key=key,
-                value=value,
-                timeout=self.duration.total_seconds()
+                default=lambda: function(*args, **kwargs),
+                timeout=self.duration.total_seconds(),
             )
 
             return value

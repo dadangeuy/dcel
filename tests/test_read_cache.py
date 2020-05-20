@@ -5,7 +5,7 @@ from uuid import uuid4
 
 from django.conf import settings
 
-from django_cache_framework import ReadCache
+from dcel import ReadCache
 from tests.service import student_service
 
 if not settings.configured:
