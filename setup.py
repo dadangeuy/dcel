@@ -4,7 +4,7 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='dcel-dadangeuy',
+    name='django-cache-expression-language',
     version='0.0.1',
     author='Irsyad Rizaldi',
     author_email='irsyad.rizaldi97@gmail.com',
@@ -17,7 +17,8 @@ setuptools.setup(
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
-        'Framework :: Django'
+        'Framework :: Django',
+        'Environment :: Web Environment',
     ],
     python_requires='>=3',
 )
