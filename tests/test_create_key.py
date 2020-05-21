@@ -21,7 +21,6 @@ class TestCreateKey(TestCase):
 
         cached_method = ReadCache(
             key='sum({a},{b})',
-            duration=timedelta(minutes=5),
             on_miss=set_cached_key,
         )(self.sum)
 
@@ -37,7 +36,6 @@ class TestCreateKey(TestCase):
 
         cached_method = ReadCache(
             key='join_name({a["name"]},{b["name"]})',
-            duration=timedelta(minutes=5),
             on_miss=set_cached_key,
         )(self.join_name)
 
@@ -56,7 +54,6 @@ class TestCreateKey(TestCase):
 
         cached_method = ReadCache(
             key='is_lowest({values[0]},{values[-1]})',
-            duration=timedelta(minutes=5),
             on_miss=set_cached_key,
         )(self.is_lowest)
 
@@ -75,7 +72,6 @@ class TestCreateKey(TestCase):
 
         cached_method = ReadCache(
             key='duration({started_at.day},{finished_at.day})',
-            duration=timedelta(minutes=5),
             on_miss=set_cached_key,
         )(self.duration)
 

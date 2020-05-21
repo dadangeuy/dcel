@@ -10,7 +10,12 @@ from dcel._base import BaseCacheDecorator
 
 class UpdateCache(BaseCacheDecorator):
 
-    def __init__(self, *, key: str, duration: timedelta, alias: str = DEFAULT_CACHE_ALIAS):
+    def __init__(
+            self, *,
+            key: str,
+            duration: timedelta = None,
+            alias: str = DEFAULT_CACHE_ALIAS
+    ):
         super().__init__(key, alias)
         self.duration = duration
 
@@ -24,7 +29,7 @@ class UpdateCache(BaseCacheDecorator):
             self.cache.set(
                 key=key,
                 value=value,
-                timeout=self.duration.total_seconds()
+                timeout=self.duration and self.duration.total_seconds()
             )
 
             return value

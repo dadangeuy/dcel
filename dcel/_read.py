@@ -15,10 +15,9 @@ class ReadCache(BaseCacheDecorator):
         pass
 
     def __init__(
-            self,
-            *,
+            self, *,
             key: str,
-            duration: timedelta,
+            duration: timedelta = None,
             alias: str = DEFAULT_CACHE_ALIAS,
             on_hit: Callable[[str, Any], None] = do_nothing,
             on_miss: Callable[[str, Any], None] = do_nothing
@@ -38,7 +37,11 @@ class ReadCache(BaseCacheDecorator):
 
             if value is self.no_value:
                 value = function(*args, **kwargs)
-                self.cache.set(key, value, self.duration.total_seconds())
+                self.cache.set(
+                    key=key,
+                    value=value,
+                    timeout=self.duration and self.duration.total_seconds()
+                )
                 self.on_miss(key, value)
 
             else:

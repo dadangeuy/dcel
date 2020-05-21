@@ -1,4 +1,3 @@
-from datetime import timedelta
 from unittest import TestCase
 from unittest.mock import patch
 from uuid import uuid4
@@ -16,7 +15,7 @@ class TestGetCache(TestCase):
 
     def setUp(self) -> None:
         self.patch_read = patch.object(student_service, 'read', wraps=student_service.read).start()
-        self.cached_read = ReadCache(key='{args[0]}', duration=timedelta(minutes=5))(self.patch_read)
+        self.cached_read = ReadCache(key='{args[0]}')(self.patch_read)
 
         self.patch_delete = patch.object(student_service, 'delete', wraps=student_service.delete).start()
         self.cached_delete = DeleteCache(key='{args[0]}')(self.patch_delete)
