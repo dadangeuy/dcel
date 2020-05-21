@@ -5,10 +5,10 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='django-cache-expression-language',
-    version='0.0.2',
+    version='0.0.3',
     author='Irsyad Rizaldi',
     author_email='irsyad.rizaldi97@gmail.com',
-    description='Expression Language Decorator for Django Cache',
+    description='Expression Language Cache Decorator for Django',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/dadangeuy/dcel',

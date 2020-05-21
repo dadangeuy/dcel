@@ -73,4 +73,4 @@ class UtilService:
     def duration(started_at: datetime, finished_at: datetime) -> timedelta:
         return finished_at - started_at
 ```
-Nested variable, for example `join_name({a[b["name"]]})` is not supported.
+Nested variable, for example `join_name: {a[b["name"]]}` is not supported.
