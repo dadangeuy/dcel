@@ -8,7 +8,7 @@ from django.core.cache import DEFAULT_CACHE_ALIAS
 from dcel._base import BaseCacheDecorator
 
 
-class UpdateCache(BaseCacheDecorator):
+class CacheUpdate(BaseCacheDecorator):
 
     def __init__(
             self, *,

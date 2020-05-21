@@ -8,7 +8,7 @@ from django.core.cache import DEFAULT_CACHE_ALIAS
 from dcel._base import BaseCacheDecorator
 
 
-class ReadCache(BaseCacheDecorator):
+class Cached(BaseCacheDecorator):
     no_value = object()
 
     def do_nothing(self, *args, **kwargs):

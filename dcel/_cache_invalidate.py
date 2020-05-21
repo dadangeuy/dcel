@@ -7,7 +7,7 @@ from django.core.cache import DEFAULT_CACHE_ALIAS
 from dcel._base import BaseCacheDecorator
 
 
-class DeleteCache(BaseCacheDecorator):
+class CacheInvalidate(BaseCacheDecorator):
 
     def __init__(self, *, key: str, alias: str = DEFAULT_CACHE_ALIAS):
         super().__init__(key, alias)

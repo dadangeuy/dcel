@@ -4,18 +4,18 @@ from uuid import uuid4
 
 from django.conf import settings
 
-from dcel import ReadCache
+from dcel import Cached
 from tests.service import student_service
 
 if not settings.configured:
     settings.configure()
 
 
-class TestGetCache(TestCase):
+class TestCached(TestCase):
 
     def setUp(self) -> None:
         self.patch_read = patch.object(student_service, 'read', wraps=student_service.read).start()
-        self.cached_read = ReadCache(key='{args[0]}')(self.patch_read)
+        self.cached_read = Cached(key='{args[0]}')(self.patch_read)
 
     def test_can_read_cached_result(self):
         init_student_1 = {'id': uuid4(), 'name': 'student-1'}

@@ -4,7 +4,7 @@ from unittest import TestCase
 
 from django.conf import settings
 
-from dcel import ReadCache
+from dcel import Cached
 
 if not settings.configured:
     settings.configure()
@@ -19,7 +19,7 @@ class TestCreateKey(TestCase):
             nonlocal cached_key
             cached_key = key
 
-        cached_method = ReadCache(
+        cached_method = Cached(
             key='sum({a},{b})',
             on_miss=set_cached_key,
         )(self.sum)
@@ -34,7 +34,7 @@ class TestCreateKey(TestCase):
             nonlocal cached_key
             cached_key = key
 
-        cached_method = ReadCache(
+        cached_method = Cached(
             key='join_name({a["name"]},{b["name"]})',
             on_miss=set_cached_key,
         )(self.join_name)
@@ -52,7 +52,7 @@ class TestCreateKey(TestCase):
             nonlocal cached_key
             cached_key = key
 
-        cached_method = ReadCache(
+        cached_method = Cached(
             key='is_lowest({values[0]},{values[-1]})',
             on_miss=set_cached_key,
         )(self.is_lowest)
@@ -70,7 +70,7 @@ class TestCreateKey(TestCase):
             nonlocal cached_key
             cached_key = key
 
-        cached_method = ReadCache(
+        cached_method = Cached(
             key='duration({started_at.day},{finished_at.day})',
             on_miss=set_cached_key,
         )(self.duration)
